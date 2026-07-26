@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Fratelli — Positano to Vesuvio Private Tour & Pizza Experience</title>
+<style>
+:root{
+  --bg:#10233f;            /* deep navy blue base */
+  --band-1:#0c1c34;        /* darker navy band */
+  --band-2:#16345c;        /* lighter navy band */
+  --band-3:#0e2747;        /* mid navy band */
+  --fg:#f3eee6;            /* warm off-white text */
+  --muted:#a9bdd6;         /* soft blue-grey */
+  --primary:#ef6b3a;       /* warm lava orange (pops on blue) */
+  --primary-dark:#d2521f;
+  --accent:#f5c451;        /* sun gold */
+  --card:#173357;          /* card on navy */
+  --card-2:#1b3b64;
+  --border:#2b4a72;        /* soft blue border */
+  --radius:18px;--shadow:0 18px 50px rgba(0,0,0,.35);--max:1160px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--fg);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--primary);text-decoration:none}
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+.section{padding:92px 0;position:relative}
+/* Layered color bands — each section a slightly different navy shade */
+.band-1{background:var(--band-1)}
+.band-2{background:var(--band-2)}
+.band-3{background:var(--band-3)}
+.section--surface{background:var(--band-2)}
+/* soft gradient seam so bands blend into layers, not hard blocks */
+.seam{height:90px;margin-top:-90px;position:relative;z-index:1;pointer-events:none}
+.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:800;color:var(--primary);margin-bottom:12px}
+.title{font-family:var(--serif);font-size:clamp(1.8rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.lead{color:var(--muted);max-width:660px;margin:16px auto 0;font-size:1.06rem}
+.center{text-align:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer;border:2px solid transparent;transition:.18s}
+.btn--primary{background:var(--primary);color:#fff}
+.btn--primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn--wa{background:#25d366;color:#fff}
+.btn--wa:hover{background:#1eb955;transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.btn--ghost:hover{background:rgba(255,255,255,.15)}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(12,28,52,.88);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--border)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--fg);letter-spacing:.02em}
+.brand b{color:var(--primary)}
+.nav{display:flex;gap:26px;align-items:center}
+.nav a{color:var(--fg);font-weight:600;font-size:.95rem}
+.nav a:hover{color:var(--primary)}
+/* WhatsApp icon inside buttons */
+.wa-ico{width:20px;height:20px;flex:0 0 auto}
+/* Hamburger menu */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;background:transparent;border:1px solid var(--border);border-radius:12px;cursor:pointer}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--fg);border-radius:2px;transition:.25s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* Mobile dropdown panel (themed) */
+.nav.open{display:flex;flex-direction:column;align-items:stretch;position:absolute;top:calc(100% + 10px);right:24px;min-width:220px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;gap:6px;box-shadow:var(--shadow)}
+.nav.open a{padding:10px 14px;border-radius:10px}
+.nav.open a:hover{background:var(--card-2)}
+.nav.open .btn--wa{justify-content:center;margin-top:6px}
+
+/* Hero */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;color:#fff;text-align:center;
+  background:linear-gradient(180deg,rgba(16,35,63,.25) 0%,rgba(16,35,63,.45) 50%,rgba(16,35,63,.92) 100%),url('vesuvio.jpg') center 40%/cover;
+  background-attachment:scroll}
+.hero .container{position:relative;z-index:2;padding-bottom:8vh}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05;font-weight:700;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.hero p{font-size:clamp(1.05rem,2vw,1.3rem);margin:22px auto 34px;max-width:640px;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-badge{display:inline-block;background:var(--accent);color:#3a2a08;font-weight:800;padding:7px 16px;border-radius:999px;font-size:.85rem;letter-spacing:.04em;margin-bottom:22px}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.8);font-size:1.6rem;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+/* Friendly fade-in on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* Experience steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:54px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;position:relative}
+.step .n{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:16px}
+.step h3{font-size:1.1rem;margin-bottom:8px}
+.step p{color:var(--muted);font-size:.94rem}
+
+/* Price banner */
+.price{background:linear-gradient(135deg,#0a1830,#1a3c66);color:#fff;border-radius:var(--radius);padding:46px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;box-shadow:var(--shadow);border:1px solid #2b4a72}
+.price .big{font-family:var(--serif);font-size:3rem;font-weight:700}
+.price .big small{font-size:1rem;font-weight:400;opacity:.8}
+.price ul{list-style:none;display:grid;gap:8px;margin-top:6px}
+.price li{display:flex;gap:10px;align-items:center;opacity:.95}
+.price li::before{content:"\2713";color:var(--accent);font-weight:800}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+.gallery img,.gallery video{border-radius:12px;height:260px;width:100%;object-fit:cover;transition:.25s;background:#0e2342}
+.gallery img:hover,.gallery video:hover{transform:scale(1.02);box-shadow:var(--shadow)}
+/* Single about photo (replaces the two-brother grid) */
+.about-photo{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);background:#0e2342}
+.about-photo img{width:100%;height:auto;object-fit:contain;display:block}
+/* Meet the brothers bio cards */
+.bios{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.bio{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+.bio .bio-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.bio h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--fg)}
+.bio .age{color:var(--primary);font-weight:800;font-size:.95rem}
+.bio .role{color:var(--accent);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.bio p{color:var(--muted);font-size:1rem}
+.bios-note{max-width:760px;margin:34px auto 0;text-align:center;color:#dce6f2;font-style:italic;font-size:1.05rem}
+
+/* Testimonials */
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:48px}
+.review{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.review .stars{color:var(--accent);font-size:1.05rem;letter-spacing:2px}
+.review p{margin:12px 0 18px;font-style:italic;color:#dce6f2}
+.review .who{display:flex;align-items:center;gap:12px}
+.review .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;display:grid;place-items:center;font-weight:800}
+.review .who b{display:block;font-size:.95rem}
+.review .who span{font-size:.82rem;color:var(--muted)}
+
+/* Calendar */
+.cal-wrap{max-width:680px;margin:44px auto 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.cal-head button{background:var(--card-2);border:1px solid var(--border);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:1.1rem;font-weight:700;color:var(--fg)}
+.cal-head h3{font-family:var(--serif);font-size:1.3rem}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{text-align:center;font-size:.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;padding:6px 0}
+.cal-day{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;font-weight:600;font-size:.95rem;border:1px solid transparent}
+.cal-day.empty{background:transparent}
+.cal-day.past{color:#5e7490;background:#0e2342}
+.cal-day.avail{background:rgba(37,211,102,.16);color:#7fe3a3;border-color:rgba(37,211,102,.4);cursor:pointer}
+.cal-day.avail:hover{background:#25d366;color:#06210f}
+.cal-day.booked{background:rgba(239,107,58,.18);color:#f59a73;text-decoration:line-through;border-color:rgba(239,107,58,.35)}
+.cal-legend{display:flex;gap:20px;justify-content:center;margin-top:18px;font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.cal-legend span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:13px;height:13px;border-radius:4px;display:inline-block}
+.dot.a{background:rgba(37,211,102,.55)}.dot.b{background:rgba(239,107,58,.55)}.dot.p{background:#1a3760}
+
+/* Footer */
+.site-footer{background:var(--band-1);color:#a9bdd6;padding:54px 0 26px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px}
+.site-footer .brand{color:#fff}
+.site-footer p{color:#9a8d7e;font-size:.92rem;margin-top:12px}
+.footer-col h4{color:#fff;margin-bottom:14px;font-size:.98rem}
+.footer-col a{display:block;color:#9a8d7e;margin-bottom:8px;font-size:.92rem}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #2c2218;margin-top:36px;padding-top:20px;text-align:center;font-size:.85rem;color:#7a6e60}
+
+@media (max-width:880px){
+  .nav{display:none}.nav-toggle{display:block}
+  .steps{grid-template-columns:1fr 1fr}
+  .about-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+  .reviews{grid-template-columns:1fr}
+  .bios{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .price{flex-direction:column;text-align:center}
+  /* Keep the "Who We Are" photo tidy on phones */
+  .about-photo{max-height:70vh}
+  .about-photo img{width:100%;height:70vh;object-fit:cover;object-position:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top">I&nbsp;<b>Fratelli</b></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#experience">The Experience</a>
+      <a href="#about">Who We Are</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#book">Availability</a>
+      <a class="btn btn--wa" href="https://wa.me/393391735159?text=Ciao%20I%20Fratelli!%20I'd%20love%20to%20book%20the%20Vesuvio%20%2B%20pizza%20experience." target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.03 3C9.4 3 4 8.38 4 15c0 2.32.68 4.48 1.85 6.3L4 29l7.9-1.82A12 12 0 0 0 16.03 27C22.66 27 28 21.62 28 15S22.66 3 16.03 3zm0 21.6c-1.9 0-3.68-.55-5.18-1.5l-.37-.23-4.2.97.9-4.02-.24-.4A9.53 9.53 0 0 1 6.5 15c0-5.28 4.28-9.6 9.53-9.6 5.26 0 9.53 4.32 9.53 9.6s-4.27 9.6-9.53 9.6zm5.34-7.15c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.35-1.44-.87-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.08-.15-.66-1.58-.9-2.17-.24-.57-.48-.49-.66-.5l-.56-.01c-.19 0-.51.07-.77.36-.27.29-1.01.99-1.01 2.42s1.04 2.81 1.18 3c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg> WhatsApp Us</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container">
+    <h1>One Unforgettable Day<br>Between Sea and Volcano</h1>
+    <p>Two Neapolitan brothers take you from Positano to the crater of Mount Vesuvius, then into a real pizzaiolo's home to make pizza with your own hands. Pick-up, volcano, pizza, and back to your hotel.</p>
+    <div class="hero-cta">
+      <a class="btn btn--wa" href="https://wa.me/393391735159?text=Ciao%20I%20Fratelli!%20I'd%20love%20to%20book%20the%20Vesuvio%20%2B%20pizza%20experience." target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.03 3C9.4 3 4 8.38 4 15c0 2.32.68 4.48 1.85 6.3L4 29l7.9-1.82A12 12 0 0 0 16.03 27C22.66 27 28 21.62 28 15S22.66 3 16.03 3zm0 21.6c-1.9 0-3.68-.55-5.18-1.5l-.37-.23-4.2.97.9-4.02-.24-.4A9.53 9.53 0 0 1 6.5 15c0-5.28 4.28-9.6 9.53-9.6 5.26 0 9.53 4.32 9.53 9.6s-4.27 9.6-9.53 9.6zm5.34-7.15c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.35-1.44-.87-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.08-.15-.66-1.58-.9-2.17-.24-.57-.48-.49-.66-.5l-.56-.01c-.19 0-.51.07-.77.36-.27.29-1.01.99-1.01 2.42s1.04 2.81 1.18 3c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg> Book on WhatsApp</a>
+    </div>
+  </div>
+  <a href="#experience" class="scroll-cue" aria-label="Scroll down">&#8595;</a>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section band-3" id="experience">
+  <div class="container">
+    <div class="center">
+      <p class="eyebrow">The Full-Day Experience</p>
+      <h2 class="title">From your hotel door, and back again</h2>
+      <p class="lead">A single price, a whole day, zero stress. We handle the driving, the tickets, and the food — you just enjoy.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>We Pick You Up</h3><p>Comfortable private pick-up directly from your hotel in Positano. No queues, no public buses.</p></div>
+      <div class="step"><div class="n">2</div><h3>Mount Vesuvius</h3><p>We drive you to the volcano and walk you up to the crater — the bay of Naples spread out below.</p></div>
+      <div class="step"><div class="n">3</div><h3>Pizza with Andrea</h3><p>We stop at Andrea's home, a Neapolitan pizzaiolo who makes pizza live and teaches you to do it yourself.</p></div>
+      <div class="step"><div class="n">4</div><h3>Back to Your Hotel</h3><p>Full and happy, we bring you straight back to Positano. The whole day taken care of.</p></div>
+    </div>
+
+    <div class="price" style="margin-top:54px">
+      <div>
+        <div class="big">€200 <small>/ person · full day</small></div>
+        <p style="opacity:.9;margin-top:6px">Everything included — no hidden extras.</p>
+      </div>
+      <ul>
+        <li>Private round-trip transport from Positano</li>
+        <li>Mount Vesuvius crater visit</li>
+        <li>Hands-on pizza class with a real pizzaiolo</li>
+        <li>Freshly made pizza, eat as much as you like</li>
+      </ul>
+      <a class="btn btn--wa" href="https://wa.me/393391735159?text=Ciao%20I%20Fratelli!%20What%20dates%20are%20available%20for%20the%20%E2%82%AC200%20full-day%20experience%3F" target="_blank" rel="noopener">Check Availability</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section band-2" id="about">
+  <div class="container about-grid">
+    <div>
+      <p class="eyebrow">Who We Are</p>
+      <h2 class="title">Two brothers, born and raised by the bay</h2>
+      <p class="lead" style="margin-left:0">We are two young Neapolitans who grew up in this world. Our family ran a restaurant for as long as we can remember, so hospitality and good food are simply in our blood.</p>
+      <p style="color:var(--muted);margin-top:16px">We've travelled the world, met people from every corner of it, and always came back to the same thought: there is no place like home. I Fratelli is our way of sharing the real Naples — the volcano, the views, and a pizza made the way our family always made it. Not a tourist factory, just two friends showing you our home.</p>
+      <a class="btn btn--primary" href="#brothers" style="margin-top:24px">Meet the Brothers</a>
+    </div>
+    <figure class="about-photo">
+      <img src="about-brothers.png" alt="I Fratelli — the two brothers" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- MEET THE BROTHERS -->
+<section class="section band-3" id="brothers">
+  <div class="container">
+    <div class="center">
+      <p class="eyebrow">Meet the Brothers</p>
+      <h2 class="title">The two behind I Fratelli</h2>
+    </div>
+    <div class="bios">
+      <div class="bio">
+        <div class="bio-head">
+          <h3>Marco Cimmino</h3>
+        </div>
+        <div class="role">Host &amp; Storyteller</div>
+        <p>Son of a restaurant owner, Marco has been passionate about food and history for as long as he can remember. Today he works at the family's events villa, where hospitality is a way of life.</p>
+      </div>
+      <div class="bio">
+        <div class="bio-head">
+          <h3>Ciro Secondulfo</h3>
+        </div>
+        <div class="role">Guide &amp; Certified Tour Leader</div>
+        <p>Also the son of a restaurant owner, Ciro currently works as a receptionist at Hotel Le Felci in Fiuggi and is a certified tour guide — he knows how to make every day run smoothly.</p>
+      </div>
+    </div>
+    <p class="bios-note">Not brothers by blood, but brothers all the same — we grew up next door to each other and have been best friends our whole lives.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section band-1">
+  <div class="container">
+    <div class="center">
+      <p class="eyebrow">A Glimpse of the Day</p>
+      <h2 class="title">Vesuvio, Positano & the pizza</h2>
+    </div>
+    <div class="gallery">
+      <img src="g-prova7.jpg" alt="I Fratelli experience" loading="lazy">
+      <img src="g-prova5.jpg" alt="Mount Vesuvius view" loading="lazy">
+      <video src="andrea-video.mp4" muted loop autoplay playsinline disablepictureinpicture preload="metadata" aria-label="Andrea the pizzaiolo making pizza"></video>
+      <img src="g-prova3.jpg" alt="Freshly made Neapolitan pizza" loading="lazy">
+      <img src="g-positano.jpg" alt="Positano coast" loading="lazy">
+      <img src="g-prova10.jpg" alt="I Fratelli experience" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section band-3" id="reviews">
+  <div class="container">
+    <div class="center">
+      <p class="eyebrow">People Say About Us</p>
+      <h2 class="title">Guests from all over the world</h2>
+    </div>
+    <div class="reviews">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"The best day of our whole Italy trip. The brothers felt like old friends by the end, and making pizza in Andrea's kitchen is something we'll never forget."</p>
+        <div class="who"><div class="av">SE</div><div><b>Sarah & Tom Ellis</b><span>London, United Kingdom</span></div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Vesuvius was breathtaking and the pizza was the real deal. Everything was organised perfectly from pick-up to drop-off. Worth every euro."</p>
+        <div class="who"><div class="av">MK</div><div><b>Maria Köhler</b><span>Munich, Germany</span></div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"We've done many tours and this was by far the most personal. You're not a number here — you're a guest in their home. Andrea is a legend!"</p>
+        <div class="who"><div class="av">JC</div><div><b>James Carter</b><span>Sydney, Australia</span></div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Authentic, warm, and so much fun. The view from the crater, then learning to stretch dough from a true pizzaiolo — pure magic. Grazie mille!"</p>
+        <div class="who"><div class="av">AD</div><div><b>Amélie Dubois</b><span>Paris, France</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK / CALENDAR -->
+<section class="section band-2" id="book">
+  <div class="container">
+    <div class="center">
+      <p class="eyebrow">Availability</p>
+      <h2 class="title">Pick a day, then message us</h2>
+      <p class="lead">Green days are open. Tap a green day to send us a WhatsApp message with the date already filled in.</p>
+    </div>
+
+    <div class="cal-wrap">
+      <div class="cal-head">
+        <button id="prevM" aria-label="Previous month">&#8249;</button>
+        <h3 id="calLabel">Month</h3>
+        <button id="nextM" aria-label="Next month">&#8250;</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-legend">
+        <span><i class="dot a"></i> Available</span>
+        <span><i class="dot b"></i> Booked</span>
+        <span><i class="dot p"></i> Past</span>
+      </div>
+      <div class="center" style="margin-top:24px">
+        <a class="btn btn--wa" href="https://wa.me/393391735159?text=Ciao%20I%20Fratelli!%20I'd%20like%20to%20book%20the%20full-day%20Vesuvio%20%2B%20pizza%20experience." target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.03 3C9.4 3 4 8.38 4 15c0 2.32.68 4.48 1.85 6.3L4 29l7.9-1.82A12 12 0 0 0 16.03 27C22.66 27 28 21.62 28 15S22.66 3 16.03 3zm0 21.6c-1.9 0-3.68-.55-5.18-1.5l-.37-.23-4.2.97.9-4.02-.24-.4A9.53 9.53 0 0 1 6.5 15c0-5.28 4.28-9.6 9.53-9.6 5.26 0 9.53 4.32 9.53 9.6s-4.27 9.6-9.53 9.6zm5.34-7.15c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.35-1.44-.87-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.08-.15-.66-1.58-.9-2.17-.24-.57-.48-.49-.66-.5l-.56-.01c-.19 0-.51.07-.77.36-.27.29-1.01.99-1.01 2.42s1.04 2.81 1.18 3c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg> Message Us on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="brand">I&nbsp;<b style="color:var(--primary)">Fratelli</b></span>
+        <p>Private full-day experiences from Positano to Mount Vesuvius, with a real Neapolitan pizza class. Two brothers, one unforgettable day.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#experience">The Experience</a>
+        <a href="#about">Who We Are</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#book">Availability</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/393391735159" target="_blank" rel="noopener">WhatsApp: +39 339 173 5159</a>
+        <a href="mailto:ifratelliexperience@gmail.com">ifratelliexperience@gmail.com</a>
+        <a href="#">Positano, Campania, Italy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 I Fratelli. Made with love between the sea and the volcano.</div>
+  </div>
+</footer>
+
+<script>
+/* ---- Friendly fade-in on scroll ---- */
+(function(){
+  var els=document.querySelectorAll('.section .container, .section .center');
+  // Tag main content blocks for reveal
+  document.querySelectorAll('.steps, .price, .about-grid, .gallery, .reviews, .cal-wrap, .section .center').forEach(function(el){el.classList.add('reveal');});
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(e){io.observe(e);});
+})();
+
+/* ---- Mobile hamburger nav ---- */
+(function(){
+  var t=document.querySelector('.nav-toggle'),n=document.querySelector('.nav');
+  if(!t||!n)return;
+  function close(){n.classList.remove('open');t.classList.remove('open');t.setAttribute('aria-expanded','false');}
+  t.addEventListener('click',function(e){
+    e.stopPropagation();
+    var isOpen=n.classList.toggle('open');
+    t.classList.toggle('open',isOpen);
+    t.setAttribute('aria-expanded',isOpen?'true':'false');
+  });
+  // Close when a link is tapped
+  n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+  // Close when tapping outside
+  document.addEventListener('click',function(e){
+    if(n.classList.contains('open')&&!n.contains(e.target)&&!t.contains(e.target))close();
+  });
+})();
+
+/* ---- Availability calendar ---- */
+(function(){
+  var WA='393391735159'; // <-- change to your real WhatsApp number (country code, no +)
+  var grid=document.getElementById('calGrid'),
+      label=document.getElementById('calLabel');
+  var view=new Date(2026,7,1); // open on August 2026 where availability is
+  var today=new Date(); today.setHours(0,0,0,0);
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var dows=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  // Only these dates are OPEN (YYYY-M-D). Everything else is closed/booked.
+  var open={};
+  ['2026-8-29','2026-8-30'].forEach(function(d){open[d]=true;});
+
+  function key(y,m,d){return y+'-'+(m+1)+'-'+d;}
+
+  function render(){
+    grid.innerHTML='';
+    var y=view.getFullYear(),m=view.getMonth();
+    label.textContent=months[m]+' '+y;
+    dows.forEach(function(d){var e=document.createElement('div');e.className='cal-dow';e.textContent=d;grid.appendChild(e);});
+    var first=new Date(y,m,1).getDay();
+    var days=new Date(y,m+1,0).getDate();
+    for(var i=0;i<first;i++){var e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
+    for(var d=1;d<=days;d++){
+      var cell=document.createElement('div');
+      cell.textContent=d;
+      var date=new Date(y,m,d);
+      if(date<today){cell.className='cal-day past';}
+      else if(!open[key(y,m,d)]){cell.className='cal-day booked';}
+      else{
+        cell.className='cal-day avail';
+        (function(dd){
+          cell.addEventListener('click',function(){
+            var txt='Ciao I Fratelli! I would like to book the full-day Vesuvio + pizza experience on '+dd+' '+months[m]+' '+y+'. Is it available?';
+            window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt),'_blank');
+          });
+        })(d);
+      }
+      grid.appendChild(cell);
+    }
+  }
+  document.getElementById('prevM').addEventListener('click',function(){view.setMonth(view.getMonth()-1);render();});
+  document.getElementById('nextM').addEventListener('click',function(){view.setMonth(view.getMonth()+1);render();});
+  render();
+})();
+</script>
+</body>
+</html>
